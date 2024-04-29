@@ -1,20 +1,18 @@
-import React from 'react';
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
+import usePetContext from './usePetContext';
 import './App.css';
 
+export const PetDataContext:any = createContext(undefined)
+
 function App() {
-
-  useEffect(() => {
-    fetch("https://eulerity-hackathon.appspot.com/pets")
-    .then(response => response.json())
-    .then(data => console.log(data))
-  },[])
-
+  
+  const {petData} = usePetContext()
+  
   return (
-    <div className="App">
+    <PetDataContext.Provider value={petData}>
       <div>
         <Header />
       </div>
@@ -24,7 +22,7 @@ function App() {
       <div>
         <Footer />
       </div>
-    </div>
+    </PetDataContext.Provider>
   );
 }
 
