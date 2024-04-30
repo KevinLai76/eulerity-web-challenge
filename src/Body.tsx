@@ -1,15 +1,24 @@
-import React,{ useContext } from 'react'
-import { PetDataContext } from './App'
+import React, { useContext } from 'react';
+import { PetDataContext } from './App';
+import PetCard from './PetCard';
 
 const Body = () => {
+    const petData: petDataObject[] = useContext(PetDataContext);
 
-    const petData = useContext(PetDataContext)
-    console.log(petData)
-    return(
+    interface petDataObject {
+        title: string;
+        description: string;
+        url: string;
+        created: string;
+    }
+
+    const card = petData.map((pet) => <PetCard key={pet.created} petDataProp={pet} />);
+
+    return (
         <div>
-            this is the body
+            {card}
         </div>
-    )
-}
+    );
+};
 
-export default Body
+export default Body;

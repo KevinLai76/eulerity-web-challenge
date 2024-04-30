@@ -2,15 +2,25 @@ import React, { useState, useEffect, createContext, useContext } from 'react';
 import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
-import usePetContext from './usePetContext';
+import PetDataFetch from './PetDataFetch';
 import './App.css';
 
 export const PetDataContext:any = createContext(undefined)
 
+// interface petDataObject {
+//   title: string;
+//   description: string;
+//   url: string;
+//   created: string;
+// }
+
+// interface petDataArray {
+//   petData: petDataObject[]
+// }
+
 function App() {
-  
-  const {petData} = usePetContext()
-  
+
+  const petData = PetDataFetch()
   return (
     <PetDataContext.Provider value={petData}>
       <div>
