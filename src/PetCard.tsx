@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './PetCard.css'
 
 interface petDataObject {
     title: string;
@@ -13,12 +14,12 @@ interface Props {
 
 const PetCard = (data: Props) => {
     const {petDataProp} = data
-
+    
     return (
-        <div>
-            <img src={petDataProp.url}/>
-            <p>Title: {petDataProp.title}</p>
-            <p>Description: {petDataProp.description}</p>
+        <div className="petCard">
+            <img className="petImage" src={petDataProp.url}/>
+            <p className="petName">Title: {petDataProp.title}</p>
+            <p className="petDescription">Description: {petDataProp.description}</p>
         </div>
     );
 };
