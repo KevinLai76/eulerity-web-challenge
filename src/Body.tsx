@@ -12,6 +12,7 @@ interface petDataObject {
 const Body = () => {
     const petData: petDataObject[] = useContext(PetDataContext);
     const [searchInput, setSearchInput] = useState<string>('')
+    const [sortType, setSortType] = useState<string>('')
     
     const handleChange = (e:any) => {
         e.preventDefault()
@@ -28,8 +29,20 @@ const Body = () => {
             return pet
         }
     })
+
+    const handleSort = (e:any) => {
+        e.preventDefault()
+        setSortType(e.target.value)
+    }
     
-    const card = filteredPetData.map((pet, i) => <PetCard key={i} petDataProp={pet} />);
+    const sortedPetData = [...filteredPetData]
+    if(sortType === 'asc'){
+        sortedPetData.sort((a,b) => a.title.localeCompare(b.title))
+    } else if(sortType === 'desc'){
+        sortedPetData.sort((a,b) => b.title.localeCompare(a.title))
+    } 
+
+    const card = sortedPetData.map((pet, i) => <PetCard key={i} petDataProp={pet} />);
 
     return (                
         <div className="body">
@@ -37,6 +50,11 @@ const Body = () => {
                 <button>Select All</button>
                 <button>Clear All Selection</button>
                 <input type="text" placeholder="Search Here" onChange={handleChange} value={searchInput}/>
+                <select defaultValue={''} onChange={handleSort}>
+                    <option value="">Best Match</option>
+                    <option value="asc">Name A-Z</option>
+                    <option value="desc">Name Z-A</option>
+                </select>
             </div>
             <div className="petCardContainer">
                 {card}
