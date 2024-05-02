@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import './PetCard.css'
 import { PetData } from "./Body";
 
 type PetCardProps = {
     petDataProp: PetData;
-    handleSelect: (pet:PetData) => void
+    handleSelect: (pet:PetData) => void;
+    isSelected: boolean
 }
 
-const PetCard = ({ petDataProp, handleSelect }: PetCardProps) => {    
+const PetCard = ({ petDataProp, handleSelect, isSelected }: PetCardProps) => {    
     const { title, description, url } = petDataProp
 
     return (
@@ -15,7 +16,7 @@ const PetCard = ({ petDataProp, handleSelect }: PetCardProps) => {
             <img className="petImage" src={url}/>
             <p className="petName">Name: {title}</p>
             <p className="petDescription">Description: {description}</p>
-            <input type="checkbox" onChange={() => handleSelect(petDataProp)}/>
+            <input type="checkbox" checked={isSelected} onChange={() => handleSelect(petDataProp)}/>
         </div>
     );
 };

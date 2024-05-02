@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { PetDataContext } from './App';
 import PetCard from './PetCard';
+// import { PetDataContextType } from './App';
 
 export type PetData = {
     title: string;
@@ -20,9 +21,12 @@ const Body = () => {
         e.preventDefault()
         setSearchInput(e.target.value)
     }
+
     const isPetSelected = (e:PetData) =>{
-        return selectedPets.find((selectedPet) => selectedPet.title === e.title)
+        const foundPet = selectedPets.find((selectedPet) => selectedPet.title === e.title)
+        return foundPet ? true : false
     }
+
     const handleSelect = (e:PetData) => {
 
         if(!isPetSelected(e)){
@@ -66,8 +70,8 @@ const Body = () => {
         sortedPetData.sort((a,b) => b.title.localeCompare(a.title))
     } 
 
-    const card = sortedPetData.map((pet:PetData, i) => <PetCard key={i} petDataProp={pet} handleSelect={handleSelect}/>);
-    
+    const card = sortedPetData.map((pet:PetData, i) => <PetCard key={i} petDataProp={pet} handleSelect={handleSelect} isSelected={isPetSelected(pet)}/>);
+    console.log("out: ",selectedPets)
     return (                
         <div className="body">
             <div className="bodyContentFilters">

@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
+// export type PetData = {
+//     title: string;
+//     description: string;
+//     url: string;
+//     created: string;
+// }
+
 const PetDataFetch = () => {
 
     const [petData, setPetData] = useState([])

@@ -4,8 +4,13 @@ import Body from './Body'
 import Footer from './Footer'
 import PetDataFetch from './PetDataFetch';
 import './App.css';
+// import { PetData } from './PetDataFetch';
 
 export const PetDataContext:any = createContext(undefined)
+// export type PetDataContextType = PetData[] | undefined;
+
+// export const PetDataContext = createContext<PetDataContextType>(undefined);
+
 
 // interface petDataObject {
 //   title: string;
