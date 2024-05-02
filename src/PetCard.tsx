@@ -1,25 +1,21 @@
 import React, { useState } from "react";
 import './PetCard.css'
+import { PetData } from "./Body";
 
-interface petDataObject {
-    title: string;
-    description: string;
-    url: string;
-    created: string;
+type PetCardProps = {
+    petDataProp: PetData;
+    handleSelect: (pet:PetData) => void
 }
 
-interface Props {
-    petDataProp: petDataObject;
-}
+const PetCard = ({ petDataProp, handleSelect }: PetCardProps) => {    
+    const { title, description, url } = petDataProp
 
-const PetCard = (data: Props) => {
-    const {petDataProp} = data
-    
     return (
         <div className="petCard">
-            <img className="petImage" src={petDataProp.url}/>
-            <p className="petName">Title: {petDataProp.title}</p>
-            <p className="petDescription">Description: {petDataProp.description}</p>
+            <img className="petImage" src={url}/>
+            <p className="petName">Name: {title}</p>
+            <p className="petDescription">Description: {description}</p>
+            <input type="checkbox" onChange={() => handleSelect(petDataProp)}/>
         </div>
     );
 };
