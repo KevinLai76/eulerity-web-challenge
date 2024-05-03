@@ -23,8 +23,7 @@ const Body = () => {
     }
 
     const isPetSelected = (e:PetData) =>{
-        const foundPet = selectedPets.find((selectedPet) => selectedPet.title === e.title)
-        return foundPet ? true : false
+        return selectedPets.includes(e)
     }
 
     const handleSelect = (e:PetData) => {
@@ -40,11 +39,41 @@ const Body = () => {
     }
 
     const handleSelectAll = () =>{
-        setSelectedPets([...petData])
+        const filteredSelectAllPets = sortedPetData.filter(pet => !selectedPets.includes(pet))
+
+        setSelectedPets([...selectedPets, ...filteredSelectAllPets])
     }
 
     const handleClearAll = () => {
         setSelectedPets([])
+    }
+
+    const downloadImage = (imageUrl:string) => {
+        return fetch(imageUrl)
+          .then((response) => response.blob())
+          .then((blob) => {
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${imageUrl}.jpeg`);
+            document.body.appendChild(link);
+            link.click();
+            if (link.parentNode){
+                link.parentNode.removeChild(link);
+            }
+          })
+          .catch((error) => {
+            console.error('Error downloading image:', error);
+          });
+      };
+      
+
+    const handleDownload = () => {
+        if(selectedPets.length !== 0){
+            selectedPets.forEach((pet) => {
+                downloadImage(pet.url)
+            })
+        }
     }
 
     const filteredPetData = petData.filter((pet) => {
@@ -71,12 +100,12 @@ const Body = () => {
     } 
 
     const card = sortedPetData.map((pet:PetData, i) => <PetCard key={i} petDataProp={pet} handleSelect={handleSelect} isSelected={isPetSelected(pet)}/>);
-    console.log("out: ",selectedPets)
     return (                
         <div className="body">
             <div className="bodyContentFilters">
                 <button onClick={handleSelectAll}>Select All</button>
                 <button onClick={handleClearAll}>Clear All Selection</button>
+                <button onClick={handleDownload}>Download Selected</button>
                 <input type="text" placeholder="Search Here" onChange={handleChange} value={searchInput}/>
                 <select defaultValue={''} onChange={handleSort}>
                     <option value="">Best Match</option>
