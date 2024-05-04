@@ -1,7 +1,27 @@
 import React, { useContext, useState } from 'react';
 import { PetDataContext } from './App';
+import styled from "styled-components";
 import PetCard from './PetCard';
 // import { PetDataContextType } from './App';
+
+const StyledBodyContainer = styled.div`
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+`
+
+const StyledFiltersContainer = styled.div`
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+`
+
+const StyledPetContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+`
 
 export type PetData = {
     title: string;
@@ -101,8 +121,8 @@ const Body = () => {
 
     const card = sortedPetData.map((pet:PetData, i) => <PetCard key={i} petDataProp={pet} handleSelect={handleSelect} isSelected={isPetSelected(pet)}/>);
     return (                
-        <div className="body">
-            <div className="bodyContentFilters">
+        <StyledBodyContainer className="body">
+            <StyledFiltersContainer className="bodyContentFilters">
                 <button onClick={handleSelectAll}>Select All</button>
                 <button onClick={handleClearAll}>Clear All Selection</button>
                 <button onClick={handleDownload}>Download Selected</button>
@@ -112,11 +132,11 @@ const Body = () => {
                     <option value="asc">Name A-Z</option>
                     <option value="desc">Name Z-A</option>
                 </select>
-            </div>
-            <div className="petCardContainer">
+            </StyledFiltersContainer>
+            <StyledPetContainer className="petCardContainer">
                 {card}
-            </div>
-        </div>
+            </StyledPetContainer>
+        </StyledBodyContainer>
     );
 };
 

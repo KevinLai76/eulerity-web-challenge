@@ -1,6 +1,32 @@
 import React from "react";
-import './PetCard.css'
+import styled from "styled-components";
 import { PetData } from "./Body";
+
+const StyledDiv = styled.div`
+    width: calc(33.33% - 10px);
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10%;
+    
+    &:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+`
+
+const StyledCheckBox = styled.input`
+    position: absolute;
+    top: 0;
+    right: 0;
+`
+
+const StyledImg = styled.img`
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+`
 
 type PetCardProps = {
     petDataProp: PetData;
@@ -12,12 +38,12 @@ const PetCard = ({ petDataProp, handleSelect, isSelected }: PetCardProps) => {
     const { title, description, url } = petDataProp
 
     return (
-        <div className="petCard">
-            <img className="petImage" src={url}/>
-            <p className="petName">Name: {title}</p>
-            <p className="petDescription">Description: {description}</p>
+        <StyledDiv className="petCard">
+            <StyledImg className="petImage" src={url}/>
+            <p className="petName">{title}</p>
+            <p className="petDescription">{description}</p>
             <input type="checkbox" checked={isSelected} onChange={() => handleSelect(petDataProp)}/>
-        </div>
+        </StyledDiv>
     );
 };
 

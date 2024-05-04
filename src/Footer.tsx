@@ -1,10 +1,19 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const FooterContainer = styled.div`
+  background-color: #333;
+  color: #fff;
+  padding: 60px 0;
+  text-align: center;
+`;
+
 
 const Footer = () => {
     return(
-        <div className="footer">
-            this is the footer
-        </div>
+        <FooterContainer className="footer">
+            &copy; Pet Saver. All rights reserved.
+        </FooterContainer>
     )
 }
 
