@@ -40,7 +40,7 @@ const PetCard = ({ petDataProp, handleSelect, isSelected }: PetCardProps) => {
 
     return (
         <StyledDiv className="petCard">
-            <Link to={`/${title}`}>
+            <Link to={`/pet/${title}`}>
                 <StyledImg className="petImage" src={url}/>
                 <p className="petName">{title}</p>
                 <p className="petDescription">{description}</p>
