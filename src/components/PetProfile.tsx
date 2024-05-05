@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { PetDataContext } from "../App";
 import { PetData } from "../PetDataFetch";
 import { downloadImage } from '../Download';
-
+import {StyledContainer, StyledCard, StyledImage } from "./PetProfileStyles";
+import { StyledName, StyledDescription, StyledButtonDownload } from "./GeneralStyles"
 
 const PetProfile = () => {
     const { name } = useParams()
@@ -17,16 +18,16 @@ const PetProfile = () => {
     }
 
     return(
-        <div>
+        <StyledContainer>
             {pet && (
-                <>
-                    <img src={pet.url} alt={pet.title} />
-                    <p>name: {pet.title}</p>
-                    <p>description: {pet.description}</p>
-                    <button onClick={handleDownload}>download</button>
-                </>
+                <StyledCard>
+                    <StyledImage src={pet.url} alt={pet.title} />
+                    <StyledName>{pet.title}</StyledName>
+                    <StyledDescription>{pet.description}</StyledDescription>
+                    <StyledButtonDownload onClick={handleDownload}>download</StyledButtonDownload>
+                </StyledCard >
             )}
-        </div>
+        </StyledContainer>
     )
 }
 

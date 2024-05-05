@@ -4,8 +4,8 @@ import PetCard from './PetCard';
 import { PetData } from '../PetDataFetch';
 import { downloadImage } from '../Download';
 // import { PetDataContextType } from './App';
-
-import { StyledBodyContainer, StyledFiltersContainer, StyledPetContainer } from './BodyStyles'
+import { StyledButtonFilter } from './GeneralStyles'
+import { StyledBodyContainer, StyledFiltersContainer, StyledPetContainer, StyledSearchBar, StyledCheckout, StyledDropDown } from './BodyStyles'
 
 // export type PetData = {
 //     title: string;
@@ -94,16 +94,16 @@ const Body = () => {
     return (                
         <StyledBodyContainer className="body">
             <StyledFiltersContainer className="bodyContentFilters">
-                <p>Checkout: {selectedPets.length}</p>
-                <button onClick={handleSelectAll}>Select All</button>
-                <button onClick={handleClearAll}>Clear All Selection</button>
-                <button onClick={handleDownload}>Download Selected</button>
-                <input type="text" placeholder="Search Here" onChange={handleChange} value={searchInput}/>
-                <select defaultValue={''} onChange={handleSort}>
+                <StyledCheckout>selected: {selectedPets.length}</StyledCheckout>
+                <StyledButtonFilter onClick={handleSelectAll}>Select All</StyledButtonFilter>
+                <StyledButtonFilter onClick={handleClearAll}>Clear All</StyledButtonFilter>
+                <StyledButtonFilter onClick={handleDownload}>Download Selected</StyledButtonFilter>
+                <StyledSearchBar type="text" placeholder="Search Here" onChange={handleChange} value={searchInput}/>
+                <StyledDropDown defaultValue={''} onChange={handleSort}>
                     <option value="">Best Match</option>
                     <option value="asc">Name A-Z</option>
                     <option value="desc">Name Z-A</option>
-                </select>
+                </StyledDropDown>
             </StyledFiltersContainer>
             <StyledPetContainer>
                 {card}
