@@ -1,12 +1,12 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from './Header'
-import Body from './Body'
-import AboutMe from './AboutMe';
-import Footer from './Footer'
+import Header from './components/Header'
+import Body from './components/Body'
+import PetProfile from './components/PetProfile'
+import About from './components/About';
+import Footer from './components/Footer'
 import PetDataFetch from './PetDataFetch';
-import './App.css';
 // import { PetData } from './PetDataFetch';
 
 const StyledBody = styled.div`
@@ -35,16 +35,17 @@ function App() {
   const petData = PetDataFetch()
   return (
       <PetDataContext.Provider value={petData}>
-        <div>
-          <Header />
-        </div>
-        <Routes>
-            <Route path="/" element={<Body />} />
-            <Route path="/about" element={<AboutMe />} />
-        </Routes>
-        <div>
-          <Footer />
-        </div>
+          <div>
+            <Header />
+          </div>
+          <Routes>
+              <Route path="/" element={<Body />} />
+              <Route path="/:name" element={<PetProfile />}/>
+              <Route path ="/about" element={<About />} />
+          </Routes>
+          <div>
+            <Footer />
+          </div>
       </PetDataContext.Provider>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import { PetData } from "./Body";
+import { PetData } from "../PetDataFetch";
 
 const StyledDiv = styled.div`
     width: calc(33.33% - 10px);
@@ -39,9 +40,11 @@ const PetCard = ({ petDataProp, handleSelect, isSelected }: PetCardProps) => {
 
     return (
         <StyledDiv className="petCard">
-            <StyledImg className="petImage" src={url}/>
-            <p className="petName">{title}</p>
-            <p className="petDescription">{description}</p>
+            <Link to={`/${title}`}>
+                <StyledImg className="petImage" src={url}/>
+                <p className="petName">{title}</p>
+                <p className="petDescription">{description}</p>
+            </Link>
             <input type="checkbox" checked={isSelected} onChange={() => handleSelect(petDataProp)}/>
         </StyledDiv>
     );
