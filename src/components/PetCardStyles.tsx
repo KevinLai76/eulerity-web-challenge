@@ -42,5 +42,4 @@ const StyledLink = styled(Link)`
     }
 `;
 
-
 export { StyledDiv, StyledCheckBox, StyledImg, StyledLink }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
 export type PetData = {
     title: string;
@@ -9,7 +9,7 @@ export type PetData = {
 
 const PetDataFetch = () => {
 
-    const [petData, setPetData] = useState([])
+    const [petData, setPetData] = useState<PetData[]>([])
 
     useEffect(() => {
         fetch("https://eulerity-hackathon.appspot.com/pets")

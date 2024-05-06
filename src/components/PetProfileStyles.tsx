@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -23,9 +24,20 @@ const StyledImage = styled.img`
   border-radius: 10px;
 `;
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+`;
+
 export {
     StyledContainer,
     StyledCard,
     StyledImage,
+    StyledLink
 }
   

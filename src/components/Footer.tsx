@@ -8,11 +8,10 @@ const FooterContainer = styled.div`
   text-align: center;
 `;
 
-
 const Footer = () => {
     return(
         <FooterContainer className="footer">
-            &copy; Pet Saver. All rights reserved.
+            &copy; PetsPets. All rights reserved.
         </FooterContainer>
     )
 }

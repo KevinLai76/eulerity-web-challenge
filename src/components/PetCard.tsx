@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { PetData } from "../PetDataFetch";
 import { StyledDiv, StyledCheckBox, StyledImg, StyledLink } from "./PetCardStyles"
-import { StyledName, StyledDescription } from "./GeneralStyles"
+import { StyledName, StyledDescription } from "../GeneralStyles"
 
 type PetCardProps = {
     petDataProp: PetData;

@@ -3,16 +3,8 @@ import { PetDataContext } from '../App';
 import PetCard from './PetCard';
 import { PetData } from '../PetDataFetch';
 import { downloadImage } from '../Download';
-// import { PetDataContextType } from './App';
-import { StyledButtonFilter } from './GeneralStyles'
-import { StyledBodyContainer, StyledFiltersContainer, StyledPetContainer, StyledSearchBar, StyledCheckout, StyledDropDown } from './BodyStyles'
-
-// export type PetData = {
-//     title: string;
-//     description: string;
-//     url: string;
-//     created: string;
-// }
+import { StyledButtonFilter } from '../GeneralStyles'
+import { StyledBodyContainer, StyledFiltersContainer, StyledPetContainer, StyledSearchBar, StyledCheckout, StyledDropDown } from './BodyStyles';
 
 const Body = () => {
     const petData: PetData[] = useContext(PetDataContext);

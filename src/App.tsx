@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './components/Header'
@@ -10,30 +10,12 @@ import PetDataFetch from './PetDataFetch';
 import ErrorPage from './ErrorPage';
 import { PetData } from './PetDataFetch';
 
-const StyledBody = styled.div`
-  background-color: light yellow;
-`
-
-export const PetDataContext:any = createContext<PetData[] | undefined>(undefined)
-// export type PetDataContextType = PetData[] | undefined;
-
-// export const PetDataContext = createContext<PetDataContextType>(undefined);
-
-
-// interface petDataObject {
-//   title: string;
-//   description: string;
-//   url: string;
-//   created: string;
-// }
-
-// interface petDataArray {
-//   petData: petDataObject[]
-// }
+type PetDataContext = PetData[] | undefined
+export const PetDataContext:any = createContext<PetDataContext>(undefined)
 
 function App() {
-
   const petData = PetDataFetch()
+  
   return (
       <PetDataContext.Provider value={petData}>
           <div>
